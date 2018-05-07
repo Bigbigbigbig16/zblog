@@ -13,14 +13,16 @@ public class UserService {
     public Integer saveUser(Users user){
 
         /*测试数据*/
-        user.setUsername("xiaowang");
-        user.setPassword("xiao123456");
-        user.setScreen_name("xw111111");
+        user.setUsername("xiaowang22");
+        user.setPassword("xiao12345622");
+        user.setScreen_name("xw11111122");
         int time = DateKit.nowUnix();
         user.setCreated(time);
 
+        System.out.println("需要保存的用户信息：  "+user);
         Long tempcid = user.save();
         Integer cid = Integer.parseInt(String.valueOf(tempcid));
+        System.out.println("需要保存的用户信息 ID ：  "+cid);
         return cid;
     }
 
