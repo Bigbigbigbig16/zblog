@@ -7,7 +7,9 @@
     <groupId>blog</groupId>
     <artifactId>zblog</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
+    <name>zblog</name>
 
     <properties>
         <blade-mvc.version>2.0.8-ALPHA1</blade-mvc.version>
