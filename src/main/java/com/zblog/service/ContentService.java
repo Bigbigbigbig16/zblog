@@ -6,7 +6,7 @@ import com.zblog.model.entity.Contents;
 import java.util.Random;
 
 @Bean
-public class contentService
+public class ContentService
 {
     /**
      * 发布文章

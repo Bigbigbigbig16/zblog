@@ -1,4 +1,4 @@
 package com.zblog.service;
 
-public class commentService {
+public class CommentService {
 }
