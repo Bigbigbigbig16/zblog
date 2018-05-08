@@ -12,10 +12,15 @@ import com.blade.mvc.http.Request;
 import com.blade.mvc.http.Response;
 import com.blade.mvc.http.Session;
 import com.blade.mvc.ui.RestResponse;
+import com.zblog.exception.TipException;
+import com.zblog.model.dto.LogActions;
+import com.zblog.model.entity.Logs;
 import com.zblog.model.entity.Users;
 import com.zblog.model.param.LoginParam;
 import com.zblog.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Path("admin")
 public class loginController {
     @Inject
@@ -47,15 +52,27 @@ public class loginController {
     @JSON
     public RestResponse doLogin(LoginParam loginParam, Request request,
                                 Session session, Response response) {
-
-        String pwd = EncryptKit.md5(loginParam.getUsername(), loginParam.getPassword());
-        Users user = new Users().where("username", loginParam.getUsername()).and("password", pwd).find();
-        if (null == user) {
-            return RestResponse.fail("用户名或密码错误");
-        }else {
-            System.out.println("Mark 登录成功");
-            return RestResponse.ok();
+        try {
+            String pwd = EncryptKit.md5(loginParam.getUsername(), loginParam.getPassword());
+            Users user = new Users().where("username", loginParam.getUsername()).and("password", pwd).find();
+            if (null == user) {
+                return RestResponse.fail("用户名或密码错误");
+            }else {
+                System.out.println("Mark 登录成功");
+                new Logs(LogActions.LOGIN, loginParam.getUsername(), request.address(), user.getUid()).save();
+                return RestResponse.ok();
+            }
+        }catch (Exception e){
+            String msg = "登录失败";
+            if (e instanceof TipException) {
+                msg = e.getMessage();
+            } else {
+                log.error(msg, e);
+            }
+            return RestResponse.fail(msg);
         }
+
+
     }
 
 
