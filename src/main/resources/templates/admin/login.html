@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href="/admin/images/favicon.png"/>
-    <title>Tale - 用户登录</title>
-    #call cdn_url('login_head')
-    <link href="/admin/css/style.min.css?v=${version}" rel="stylesheet" type="text/css">
+    <title>用户登录</title>
+
+    <link href="/static/css/style.min.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         body,html {
-            background: url("/admin/images/bg/${random(5, '.png')}") no-repeat;
+            background: url("/static/images/bg/1.png");
             background-size: cover;
         }
         .panel-shadow {
@@ -45,7 +45,7 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    #call cdn_url('html5_respond')
+
     <![endif]-->
 
 </head>
@@ -55,7 +55,7 @@
     <div class="panel panel-color panel-danger panel-pages panel-shadow">
         <div class="panel-heading bg-img">
             <div class="bg-overlay"></div>
-            <h3 class="text-center m-t-10"> Login Tale</h3>
+            <h3 class="text-center m-t-10"> Login </h3>
         </div>
 
         <div class="panel-body">
@@ -75,14 +75,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <div class="checkbox checkbox-danger">
-                            <input id="checkbox-signup" name="remeberMe" type="checkbox">
-                            <label for="checkbox-signup">记住我</label>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="form-group text-center m-t-40">
                     <div class="col-xs-12">
@@ -96,8 +89,8 @@
     </div>
 </div>
 <!-- Main  -->
-#call cdn_url('login_foot')
-<script src="/admin/js/base.js"></script>
+
+<script src="/static/js/base.js"></script>
 <script type="text/javascript">
     var tale = new $.tale();
     function checkForm() {
@@ -106,6 +99,7 @@
             data: $("#loginForm").serialize(),
             success: function (result) {
                 if (result && result.success) {
+                    alert('登录成功，页面跳转')
                     window.location.href = '/admin/index';
                 } else {
                     tale.alertError(result.msg || '登录失败');

@@ -3,10 +3,12 @@ package com.zblog.controller.admin;
 import com.blade.jdbc.page.Page;
 import com.blade.mvc.annotation.GetRoute;
 import com.blade.mvc.annotation.Param;
+import com.blade.mvc.annotation.Path;
 import com.blade.mvc.http.Request;
 import com.zblog.model.dto.Types;
 import com.zblog.model.entity.Contents;
 
+@Path("article")
 public class ArticleController {
     /**
      * 文章管理首页
